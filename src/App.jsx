@@ -30,7 +30,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { get, onValue, push, ref, serverTimestamp, set, update } from "firebase/database";
-import { auth, db, isFirebaseConfigured } from "./lib/firebase";
+import { auth, db, isFirebaseConfigured, missingFirebaseConfigKeys } from "./lib/firebase";
 import {
   badgeLetters,
   buildAcronym,
@@ -1206,9 +1206,18 @@ function SetupScreen() {
           <AlertCircle size={28} />
           <h1>Firebase 설정이 필요해요</h1>
           <p>
-            `.env.example`을 복사해 `.env`를 만들고 Firebase 웹 앱 설정값을 채우면
+            Firebase 콘솔의 웹 앱 설정에서 API key를 가져와 환경변수에 넣으면
             로그인과 Realtime Database 저장 기능이 켜집니다.
           </p>
+          <div className="missing-env">
+            <span>빠진 값</span>
+            <strong>
+              {missingFirebaseConfigKeys.length
+                ? missingFirebaseConfigKeys.map((key) => `VITE_FIREBASE_${toEnvKey(key)}`).join(", ")
+                : "없음"}
+            </strong>
+          </div>
+          <code className="env-snippet">VITE_FIREBASE_API_KEY=Firebase 콘솔에서 복사한 apiKey</code>
         </div>
       </section>
     </Shell>
@@ -1325,4 +1334,8 @@ function friendlyAuthError(error) {
   if (code.includes("auth/requires-recent-login")) return "다시 로그인한 뒤 비밀번호를 변경해 주세요.";
   if (code.includes("auth/wrong-password")) return "현재 비밀번호가 맞지 않아요.";
   return error?.message || "처리 중 문제가 생겼어요.";
+}
+
+function toEnvKey(key) {
+  return key.replace(/[A-Z]/g, (letter) => `_${letter}`).toUpperCase();
 }

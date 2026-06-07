@@ -230,6 +230,39 @@ button {
   line-height: 1.6;
 }
 
+.missing-env {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 16px;
+  background: var(--wrong-soft);
+  color: var(--ink);
+  text-align: left;
+}
+
+.missing-env span {
+  color: var(--wrong);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.missing-env strong {
+  overflow-wrap: anywhere;
+}
+
+.env-snippet {
+  display: block;
+  padding: 12px;
+  border-radius: 16px;
+  background: #f4f0e8;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
 label {
   display: grid;
   gap: 8px;

@@ -44,17 +44,19 @@ npm run dev
 cp .env.example .env
 ```
 
-필요한 환경변수:
+현재 프로젝트 주소는 코드와 `.env.example`에 반영되어 있습니다. 최소로 필요한 환경변수는 Firebase 웹 앱 설정의 `apiKey`입니다.
 
 ```bash
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_DATABASE_URL=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_API_KEY=Firebase_콘솔에서_복사한_apiKey
+VITE_FIREBASE_AUTH_DOMAIN=memorize-52974.firebaseapp.com
+VITE_FIREBASE_DATABASE_URL=https://memorize-52974-default-rtdb.firebaseio.com/
+VITE_FIREBASE_PROJECT_ID=memorize-52974
+VITE_FIREBASE_STORAGE_BUCKET=memorize-52974.appspot.com
 VITE_FIREBASE_MESSAGING_SENDER_ID=
 VITE_FIREBASE_APP_ID=
 ```
+
+`VITE_FIREBASE_MESSAGING_SENDER_ID`와 `VITE_FIREBASE_APP_ID`는 앱 실행에는 필수로 막지 않지만, Firebase 콘솔의 웹 앱 설정에 표시되면 함께 넣는 것을 권장합니다.
 
 ## Realtime Database 보안 규칙
 
